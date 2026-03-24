@@ -1,0 +1,33 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Stata files
+*.log
+*.smcl
+*.tmp
+*.bak
+*.gph
+
+# Excel temp files
+~$*.xlsx
+~$*.xls
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Data folders
+data_raw/
+data_private/
+
+# Output folders
+output/
+results/
+figures/
+tables/
+
+# Large archives
+*.zip
+*.rar
+*.7z
