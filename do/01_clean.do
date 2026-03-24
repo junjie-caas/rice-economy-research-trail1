@@ -67,11 +67,17 @@ drop in 1/2
 *------------------------------------------------------
 * 3) 基础清洗
 *------------------------------------------------------
+* 先标准化字符串取值：按评审意见将“无”编码为0
+quietly foreach v of varlist _all {
+    capture confirm string variable `v'
+    if !_rc replace `v' = "0" if trim(`v') == "无"
+}
+
 * 将全表可转数值字段转为数值型；忽略空格和千分位逗号
 destring _all, replace ignore(" ,")
 
 * 统一常见缺失值编码（字符串残留时）
-foreach miss in "NA" "N/A" "." "-" "--" "无" "未知" {
+foreach miss in "NA" "N/A" "." "-" "--" "未知" {
     quietly foreach v of varlist _all {
         capture confirm string variable `v'
         if !_rc replace `v' = "" if trim(upper(`v')) == trim(upper("`miss'"))
