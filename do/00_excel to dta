@@ -1,0 +1,40 @@
+clear all
+set more off
+
+import excel "D:\#AGENT\rice-economy-trial1\data_raw\survey_raw.xlsx", sheet("Sheet1") allstring clear
+
+ds
+local oldvars `r(varlist)'
+
+local usednames
+
+foreach v of local oldvars {
+
+    quietly levelsof `v' in 1, local(vlabel)
+    quietly levelsof `v' in 2, local(vname_raw)
+
+    local vname = lower(strtoname("`vname_raw'"))
+
+    if "`vname'" == "" {
+        local vname = "`v'"
+    }
+
+    * 若变量名重复，则自动加后缀
+    local base "`vname'"
+    local i = 1
+    while strpos(" `usednames' ", " `vname' ") > 0 {
+        local vname = "`base'_`i'"
+        local ++i
+    }
+
+    local usednames `usednames' `vname'
+
+    rename `v' `vname'
+    label variable `vname' "`vlabel'"
+}
+
+drop in 1/2
+
+destring _all, replace ignore(" ,")
+
+save "D:\#AGENT\rice-economy-trial1\data_raw\survey_raw.dta", replace
