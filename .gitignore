@@ -21,11 +21,6 @@ __pycache__/
 data_raw/
 data_private/
 
-# Output folders
-output/
-results/
-figures/
-tables/
 
 # Large archives
 *.zip
