@@ -34,7 +34,16 @@ replication_steps.md# 复现实验步骤
 ## 推荐做法
 
 1. 将原始问卷或行政数据放入 `data_raw/`。
-2. 在 `do/` 中编写 `01_clean.*`、`02_analysis.*`、`03_figures.*` 等脚本。
+2. 在 `do/` 中运行已提供的 `01_clean.py`、`02_analysis.py`、`03_figures.py` 脚本（可按需扩展）。
 3. 将清洗后的主分析数据输出到 `data_clean/`。
 4. 将表格与图形分别输出到 `output/tables/` 与 `output/figures/`。
 5. 在 `replication_steps.md` 中记录可复现步骤与软件环境。
+
+
+## 快速运行
+
+```bash
+python do/01_clean.py
+python do/02_analysis.py
+python do/03_figures.py
+```

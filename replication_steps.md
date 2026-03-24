@@ -13,18 +13,18 @@
 
 ## 3. 数据清洗
 
-- 运行 `do/` 下清洗脚本（如 `01_clean.*`）
-- 输出清洗数据到 `data_clean/`
+- 运行 `python do/01_clean.py`
+- 输出清洗数据到 `data_clean/survey_clean.csv`
 
 ## 4. 实证分析
 
-- 运行 `do/` 下分析脚本（如 `02_analysis.*`）
-- 输出统计表到 `output/tables/`
+- 运行 `python do/02_analysis.py`
+- 输出统计表到 `output/tables/summary_by_rice_type.csv`
 
 ## 5. 绘图与可视化
 
-- 运行 `do/` 下绘图脚本（如 `03_figures.*`）
-- 输出图片到 `output/figures/`
+- 运行 `python do/03_figures.py`
+- 输出图片到 `output/figures/avg_area_by_rice_type.svg`
 
 ## 6. 归档与检查
 
