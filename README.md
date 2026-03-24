@@ -34,7 +34,7 @@ replication_steps.md# 复现实验步骤
 ## 推荐做法
 
 1. 将原始问卷或行政数据放入 `data_raw/`。
-2. 在 `do/` 中运行已提供的 `01_clean.py`、`02_analysis.py`、`03_figures.py` 脚本（可按需扩展）。
+2. 在 `do/` 中运行已提供的 `01_clean.py`、`02_analysis.py`、`03_figures.py`、`04_regression.py` 脚本（可按需扩展）。
 3. 将清洗后的主分析数据输出到 `data_clean/`。
 4. 将表格与图形分别输出到 `output/tables/` 与 `output/figures/`。
 5. 在 `replication_steps.md` 中记录可复现步骤与软件环境。
@@ -46,4 +46,19 @@ replication_steps.md# 复现实验步骤
 python do/01_clean.py
 python do/02_analysis.py
 python do/03_figures.py
+python do/04_regression.py
+bash do/run_regression.sh  # 一键清洗+回归
 ```
+
+
+
+## 回归分析说明
+
+- 研究问题：规模（种植面积）对流转租金的影响。
+- 模型设定：`rent_i = alpha + beta * scale_i + e_i`。
+- 脚本：`python do/04_regression.py` 或 `bash do/run_regression.sh`。
+- 输出：
+  - `output/tables/reg_scale_on_rent.csv`（系数与统计量）
+  - `output/tables/reg_scale_on_rent_standard.csv`（标准结果格式）
+  - `output/tables/reg_scale_on_rent.md`（Markdown 回归表）
+  - `output/tables/reg_scale_on_rent.txt`（可读摘要）

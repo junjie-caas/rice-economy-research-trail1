@@ -26,12 +26,21 @@
 - 运行 `python do/03_figures.py`
 - 输出图片到 `output/figures/avg_area_by_rice_type.svg`
 
-## 6. 归档与检查
+
+## 6. 回归分析：规模对流转租金的影响
+
+- 运行 `python do/04_regression.py` 或 `bash do/run_regression.sh`
+- 输出回归结果到 `output/tables/reg_scale_on_rent.csv`
+- 输出标准格式结果到 `output/tables/reg_scale_on_rent_standard.csv`
+- 输出 Markdown 回归表到 `output/tables/reg_scale_on_rent.md`
+- 输出回归摘要到 `output/tables/reg_scale_on_rent.txt`
+
+## 7. 归档与检查
 
 - 核对表格和图形是否可由脚本一键再生
 - 记录软件版本与随机种子（如适用）
 
-## 7. 本项目建议使用的数据字段
+## 8. 本项目建议使用的数据字段
 
 | 字段名 | 说明 |
 |---|---|
