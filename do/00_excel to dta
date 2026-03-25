@@ -1,7 +1,11 @@
 clear all
 set more off
 
-import excel "D:\#AGENT\rice-economy-trial1\data_raw\survey_raw.xlsx", sheet("Sheet1") allstring clear
+* 根目录
+global ROOT "D:\#AGENT\rice-economy-trial1"
+cd "$ROOT"
+
+import excel "$ROOT\data_raw\survey_raw.xlsx", sheet("Sheet1") allstring clear
 
 ds
 local oldvars `r(varlist)'
@@ -37,4 +41,4 @@ drop in 1/2
 
 destring _all, replace ignore(" ,")
 
-save "D:\#AGENT\rice-economy-trial1\data_raw\survey_raw.dta", replace
+save "$ROOT\data_raw\survey_raw.dta", replace
