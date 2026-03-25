@@ -2,6 +2,7 @@
 
 ## 1. 准备环境
 
+- 根目录：`D:\#AGENT\rice-economy-trial1`
 - 克隆仓库
 - 安装分析所需软件（例如 Python/R/Stata）
 - 确认目录结构完整
@@ -16,6 +17,11 @@
 - 运行 `python do/01_clean.py`
 - 输出清洗数据到 `data_clean/survey_clean.csv`
 
+## 3.1 品种字段标准化
+
+- 运行 `python do/01_clean_ricevariety.py --input data_raw/survey_raw.csv --output data_clean/survey_ricevariety_clean.csv`
+- 产出 `ricevariety_std`（标准品种）、`rice_type_group`（类别分组）、`ricevariety_multi_flag`（多品种混填标记）
+
 ## 4. 实证分析
 
 - 运行 `python do/02_analysis.py`
@@ -27,13 +33,20 @@
 - 输出图片到 `output/figures/avg_area_by_rice_type.svg`
 
 
-## 6. 回归分析：规模对流转租金的影响
+## 6. 回归分析：`area` 对 `rent` 的面板影响（Stata）
 
-- 运行 `python do/04_regression.py` 或 `bash do/run_regression.sh`
-- 输出回归结果到 `output/tables/reg_scale_on_rent.csv`
-- 输出标准格式结果到 `output/tables/reg_scale_on_rent_standard.csv`
-- 输出 Markdown 回归表到 `output/tables/reg_scale_on_rent.md`
-- 输出回归摘要到 `output/tables/reg_scale_on_rent.txt`
+- 将源数据放置为 `D:\#AGENT\rice-economy-trial1\data_clean\rent_raw.dta`（包含 `id year area rent`）
+- 运行 `stata -b do do/04_panel_area_rent.do`
+- 脚本会执行：
+  - pooled OLS：`reg rent area i.year, vce(cluster id)`
+  - 固定效应：`xtreg rent area i.year, fe vce(cluster id)`
+  - 随机效应：`xtreg rent area i.year, re vce(cluster id)`
+  - Hausman 检验：比较 FE 与 RE
+  - 地区控制：自动选择 `county_id` / `city_id` / `province_id` 中可用变量并加入回归
+- 输出日志：`output/tables/panel_area_rent.log`
+- 输出 esttab 表：`output/tables/panel_area_rent_esttab.csv`、`output/tables/panel_area_rent_esttab.rtf`
+- 输出 outreg2 Word 表：`output/tables/panel_area_rent_outreg2.doc`
+- 输出回归样本：`data_clean/rent_panel_used.dta`
 
 ## 7. 归档与检查
 
