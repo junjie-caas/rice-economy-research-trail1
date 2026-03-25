@@ -16,6 +16,11 @@
 - 运行 `python do/01_clean.py`
 - 输出清洗数据到 `data_clean/survey_clean.csv`
 
+## 3.1 品种字段标准化
+
+- 运行 `python do/01_clean_ricevariety.py --input data_raw/survey_raw.csv --output data_clean/survey_ricevariety_clean.csv`
+- 产出 `ricevariety_std`（标准品种）、`rice_type_group`（类别分组）、`ricevariety_multi_flag`（多品种混填标记）
+
 ## 4. 实证分析
 
 - 运行 `python do/02_analysis.py`
